@@ -1,0 +1,27 @@
+{
+  "name": "por-febour-server",
+  "version": "1.0.0",
+  "description": "Por febour description",
+  "scripts": {
+    "start": "babel-node src/server.js",
+    "build": "babel src -d build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.11.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "circular-json": "^0.3.3",
+    "express": "^4.15.4"
+  }
+}

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+   db:
+     image: couchdb:1.6.1
+     ports:
+       - "5984:5984"
+     volumes:
+       - db_data:/var/lib/couchdb
+       - ./local.ini:/usr/local/etc/couchdb/local.ini
+     restart: always
+
+   server:
+     depends_on:
+       - db
+     build: 
+       context: ./server
+       dockerfile: ./Dockerfile
+     image: por-febour-server:latest
+     ports:
+       - "3001:3001"
+     restart: always
+
+   client:
+     depends_on:
+       - server
+     build: 
+       context: ./client
+       dockerfile: ./Dockerfile
+     image: por-febour-client:latest
+     ports:
+       - "3000:3000"
+     restart: always
+    
+volumes:
+    db_data:
