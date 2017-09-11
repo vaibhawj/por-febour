@@ -2,9 +2,9 @@ import axios from 'axios';
 import CircularJSON from 'circular-json';
 
 const getRsvp = async (phone) => {
-    let oldRsvpPromise = await axios.get(`http://localhost:5984/rsvp/${phone}`)
+    let oldRsvpPromise = await axios.get(`http://db:5984/rsvp/${phone}`)
         .then((response) => {
-            return CircularJSON.stringify(response).data;
+            return response.data;
         })
         .catch((error) => {
             return null;
@@ -19,7 +19,7 @@ export const submitRsvp = async (req, res) => {
     let oldRsvp = await getRsvp(rsvp.phone);
 
     if (oldRsvp === null) {
-        await axios.post("http://localhost:5984/rsvp", {
+        await axios.post("http://db:5984/rsvp", {
             "name": rsvp.name,
             "phone": rsvp.phone,
             "email": rsvp.email,
@@ -35,7 +35,7 @@ export const submitRsvp = async (req, res) => {
             })
 
     } else {
-        await axios.put(`http://localhost:5984/rsvp/${rsvp.phone}`, {
+        await axios.put(`http://db:5984/rsvp/${rsvp.phone}`, {
             "name": rsvp.name,
             "phone": rsvp.phone,
             "email": rsvp.email,
