@@ -1,8 +1,10 @@
 import axios from 'axios';
 import CircularJSON from 'circular-json';
 
+const couchDbUrl = "https://couchdb-1a7a13.smileupps.com/rsvp";
+
 const getRsvp = async (phone) => {
-    let oldRsvpPromise = await axios.get(`http://db:5984/rsvp/${phone}`)
+    let oldRsvpPromise = await axios.get(`${couchDbUrl}/${phone}`)
         .then((response) => {
             return response.data;
         })
@@ -19,7 +21,7 @@ export const submitRsvp = async (req, res) => {
     let oldRsvp = await getRsvp(rsvp.phone);
 
     if (oldRsvp === null) {
-        await axios.post("http://db:5984/rsvp", {
+        await axios.post(`${couchDbUrl}`, {
             "name": rsvp.name,
             "phone": rsvp.phone,
             "email": rsvp.email,
@@ -35,7 +37,7 @@ export const submitRsvp = async (req, res) => {
             })
 
     } else {
-        await axios.put(`http://db:5984/rsvp/${rsvp.phone}`, {
+        await axios.put(`${couchDbUrl}/${rsvp.phone}`, {
             "name": rsvp.name,
             "phone": rsvp.phone,
             "email": rsvp.email,
@@ -52,6 +54,5 @@ export const submitRsvp = async (req, res) => {
                 res.status(500).send(CircularJSON.stringify(error));
             })
     }
-    console.log('done!!!');
 }
 
