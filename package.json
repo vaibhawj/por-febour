@@ -1,0 +1,13 @@
+{
+    "name": "por-febour",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "startClient": "cd client && npm i && npm start",
+        "startServer": "cd server && npm i && npm start",
+        "start": "npm i && concurrent \"npm run startClient\" \"npm run startServer\""
+    },
+    "dependencies": {
+        "concurrently": "^1.0.0"
+    }
+}
