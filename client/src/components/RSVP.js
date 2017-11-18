@@ -178,9 +178,8 @@ const actionShowAlert = (alertMsg, alertType) => {
 }
 
 const submitRsvp = async (dispatch, rsvp) => {
-    const HOST = process.env.HOST || '0.0.0.0';
 
-    let action = await axios.post(`http://${HOST}:3001/rsvp/`, {
+    let action = await axios.post('rsvp/', {
         "name": rsvp.name,
         "phone": rsvp.phone,
         "email": rsvp.email,
