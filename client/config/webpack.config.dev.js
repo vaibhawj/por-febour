@@ -261,9 +261,5 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
-  },
-  devServer: {
-    compress: true,
-    disableHostCheck: true
   }
 };
