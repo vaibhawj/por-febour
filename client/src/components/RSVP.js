@@ -179,7 +179,7 @@ const actionShowAlert = (alertMsg, alertType) => {
 
 const submitRsvp = async (dispatch, rsvp) => {
 
-    let action = await axios.post('rsvp/', {
+    let action = await axios.post('saveRsvp/', {
         "name": rsvp.name,
         "phone": rsvp.phone,
         "email": rsvp.email,
