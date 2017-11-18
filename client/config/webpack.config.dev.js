@@ -261,9 +261,5 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
-  },
-  devServer: {
-    compress: true,
-    public: 'https://blooming-refuge-39668.herokuapp.com/' // That solved it
   }
 };
